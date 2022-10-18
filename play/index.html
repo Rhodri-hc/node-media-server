@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>直播</title>
+  </head>
+  <body>
+    <script src="https://cdn.bootcss.com/flv.js/1.4.0/flv.min.js"></script>
+    <video id="videoElement" width="100%" controls></video>
+    <script>
+      if (flvjs.isSupported()) {
+        var videoElement = document.getElementById("videoElement");
+
+        //      // 下面的ws://localhost:8888换成你搭建的websocket服务地址，后面加上设备流地址
+        // this.player = flvjs.createPlayer({
+        //   type: 'flv',
+        //   isLive: true,
+        //   url: 'ws://localhost:8888/' + url
+        // })
+
+        var flvPlayer = flvjs.createPlayer({
+          type: "flv",
+          url: "http://localhost:8000/live/STREAM_NAME.flv",
+        });
+        flvPlayer.attachMediaElement(videoElement);
+        flvPlayer.load();
+        flvPlayer.play();
+      }
+    </script>
+  </body>
+</html>
